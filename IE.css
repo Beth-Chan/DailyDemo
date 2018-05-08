@@ -1,0 +1,13 @@
+p {
+    color: #0f0;
+    *color: #f00; /* IE7 */
+    _color: #000; /* IE6 */
+}
+/* IE6 */
+*html p {
+    color: #000;
+}
+/* IE7 */
+*+html p {
+    color: #f00;
+}

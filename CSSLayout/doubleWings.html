@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>双飞翼布局</title>
+    <style>
+        * { /* 这里简化，不用reset.css文件 */
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            height: 100px;
+            background: pink;
+        }
+        .footer {
+            height: 100px;
+            background: pink;
+            clear: both; /* 页脚清除浮动 */
+        }
+        .container {
+            background: green;
+        }
+        /* 左中右三者都左浮动 */
+        .main {
+            float: left;
+            width: 100%; /* 中间部分自适应所以用100%占满container */
+            background: red;
+        }
+        .left {
+            float: left;
+            width: 200px; /* 左边定宽*/
+            margin-left: -100%; /* main区域占满，所以把left区域拉到最左边，由下排拉到上排最左，拉的距离是container的宽度，但是会覆盖main区域的左边 */
+            background: green;
+        }
+        .right {
+            float: left;
+            width: 200px; /* 右边定宽*/
+            margin-left: -200px; /* 由下排拉到上排的最右边，拉的距离是自身宽度即可 */
+            background: yellow;
+        }
+        .main-inner {
+            margin: 0 200px 0 200px; /* 左右都腾出left和right部分的宽度，main的内容就不会被遮住，减少main的可视尺寸 */
+        }
+        /* 三列等高布局也可以在左中右都加上margin-bottom: -9999px;和padding-bottom: 9999px，然后在container中加上overflow: hidden; */
+        .left, .main, .right {
+            min-height: 500px; /* 左中右的最小高度，即使内容不多也可以撑高 */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">header</div>
+    <div class="container">
+        <!-- 与圣杯布局HTML结构的不同之处在于main多了个里层div，双飞翼布局强调在里面多加一个，左右部分不用相对布局 -->
+        <div class="main"> 
+            <div class="main-inner">main</div>
+        </div>
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <div class="footer">footer</div>
+</body>
+</html>

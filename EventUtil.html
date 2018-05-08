@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="my" class="" type="text" value="请输入">
+    <script>
+        // 封装成util
+        var EventUtil = {
+            addHandler: function(el, type, handler) {
+                if (window.addEventListener) {
+                    el.addEventListener(type, handler,false);
+                } else if(window.attachEvent) {
+                    el.attachEvent("on" + type, handler);
+                } else {
+                    el["on"+type] = handler;
+                }
+            },
+            removeHandler: function(el, type, handler) {
+                if (window.removeEventListener) {
+                    el.removeEventListener(type, handler, false);
+                } else if(window.detachEvent) {
+                    el.detachEvent("on" + type, handler);
+                } else {
+                    el["on" + type] =  null;
+                }
+            },
+            getEvent: function(event) {
+                return event || window.event;
+            },
+            getTarget: function(event) {
+                return event.target || event.srcElement;
+            },
+            preventDefault: function(event) {
+                if (event.preventDefault) {
+                    event.preventDefault();
+                } else {
+                    event.returnValue = false;
+                }
+            },
+            stopPropagation: function(event) {
+                if (event.stopPropagation) {
+                    event.stopPropagation();
+                } else {
+                    event.cancelBubble = true;
+                }
+            }
+        };
+
+        let my = document.getElementById('my');
+        EventUtil.addHandler(my, "blur", function(event) {
+            if(EventUtil.getTarget(event).value.length === 0) {
+                // some code...
+            }
+        });
+    </script>
+</body>
+
+</html>

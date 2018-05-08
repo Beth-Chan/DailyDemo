@@ -17,7 +17,7 @@
 				var oLi = document.getElementsByTagName("li");
 				for(var i = 0; i < oLi.length; i++) {
 					oLi[i].onclick = (function (j) {
-						// 闭包保存i引用
+						// 闭包保存i值
 						return function() {
 							console.log(j);
 						};

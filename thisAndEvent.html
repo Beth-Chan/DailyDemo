@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>click事件的几种写法</title>
+</head>
+<body>
+    <ul id="parent">
+        <li>第1个</li>
+        <li>第2个</li>
+        <li>第3个</li>
+        <li>第4个</li>
+        <li>第5个</li>
+        <li>第6个</li>
+        <li>第7个</li>
+    </ul>
+    
+    <script>
+        // 需求：点击每个li，输出里面的内容
+
+        var oUl = document.getElementById('parent');
+        var oLis = oUl.getElementsByTagName('li');
+
+        for (let i = 0; i < oLis.length; i++) {
+            oLis[i].onclick = function () {
+                console.log(oLis[i].innerHTML);
+            };
+        }
+
+        // 用 this
+        for (let i = 0; i < oLis.length; i++) {
+            oLis[i].onclick = function () {
+                console.log(this.innerHTML); // 这里的this相当于li[i]
+            }
+        }
+
+        // 用 event
+        oUl.onclick = function (e) {
+            var target = e.target || e.srcElement;
+            if (target.tagName.toLowerCase() === 'li') {
+                console.log(target.innerHTML);
+            }
+        }
+    </script>
+</body>
+</html>

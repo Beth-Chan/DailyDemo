@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            height: 100px;
+            background: red;
+        }
+        article {
+            height: 400px;
+            background: green;
+        }
+        footer {
+            height: 100px;
+            background: blue;
+        }
+        .left {
+            /* 一侧定宽 */
+            float: left; /* 左边左浮动 */
+            width: 150px;
+            height: 120px;
+            background: pink;
+        }
+        .right {
+            /* 右边自适应 */
+            margin-left: 160px; /* 右边减少可视尺寸，如果是左边部分margin-right的话会跟图文围绕效果一样 */
+            height: 300px;
+            background: black;
+        }
+    </style>
+</head>
+<body>
+    <header>我是头部</header>
+    <article>
+        <div class="left">我是左</div>
+        <div class="right">我是右</div>
+    </article>
+    <footer>我是尾部</footer>
+</body>
+</html>

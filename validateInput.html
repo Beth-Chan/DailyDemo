@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" class="myInput">
+
+    <script>
+    // 文本框验证（考虑浏览器兼容性）
+    // 页面有文本框，需要限制该文本框中只能录入数字，即：如果用户按下数字以外的其他键，文本框中无法录入；如果用户粘贴进非数字字符，也需要进行过滤。
+    // 请设计  HTML 代码以及  JS  代码，实现上述功能。
+    // 首先，需要为文本框定义  onkeypress  事件，用于在录入文本时做出判断；并为文本框定义  onkyeup 事件，用于过滤粘贴进来的文本。
+    var oIn = document.getElementsByClassName("myInput")[0];
+    oIn.addEventListener("keypress", function (e) {
+        var code = e.keyCode || e.which; // IE/FF
+        if ((code < 48) || (code > 57)) { // 数字0-9
+            if (e.preventDefault) {
+                // e.preventDefault() 阻止默认的
+                e.preventDefault();
+                // console.log(code);
+            } else {
+                e.returnValue = false;
+            }
+        }
+    }, false);
+    // oIn.addEventListener("keyup", function () {
+    //     oIn.value = oIn.value.replace(/[^0-9]+/g, "");
+    // }, false); 两种写法都可以
+    oIn.onkeyup = function () {
+        oIn.value = oIn.value.replace(/[^0-9]/g, "");
+    }
+    </script>
+</body>
+</html>

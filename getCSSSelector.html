@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Document</title>
+
+</head>
+
+<body>
+
+    <div id="page">
+
+        <div class="content main">
+
+            <div class="refer">
+
+                <ul>
+
+                    <li>1</li>
+
+                    <li>2</li>
+
+                    ...
+
+                </ul>
+
+             </div>
+
+        </div>
+
+    </div>
+
+<script>
+    var genCssSelector = function(){
+        // 被点击的对象
+        var current = arguments[0]; 
+        // 父节点
+        var parent = current.parentNode; 
+        // 取出当前节点的节点名，转成小写
+        var nodeTagName = current.nodeName.toLowerCase();
+        // 循环到document
+        while(parent.nodeName.toLowerCase() != '#document') {
+            // 是否有id
+            if(parent.id != '') {
+                nodeTagName = '#' + parent.id + ' ' + nodeTagName;
+                parent = parent.parentNode;
+            } else if (parent.className != '') { // 是否有类名
+                // 类名可有多个
+                nodeTagName = ' ' + nodeTagName;
+                // 字符串转成字符串数组
+                var list = parent.className.split(' ');
+                for(var i = list.length-1; i >= 0; i--) {
+                    nodeTagName = '.' + list[i] + nodeTagName;
+                }
+                parent = parent.parentNode;
+            } else { // 没有id class 的标签
+                nodeTagName = parent.nodeName.toLowerCase() + ' ' + nodeTagName;
+                parent = parent.parentNode;
+            }
+        }
+        return nodeTagName;
+    }
+
+    document.addEventListener('click', function(e){
+        //点击li时，返回：html body #page .content.main .refer ul li
+        console.log(genCssSelector(e.target));
+    })
+</script>
+
+</body>
+</html>

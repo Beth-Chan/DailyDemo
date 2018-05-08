@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        // 使用  js 代码为页面动态添加 5 个按钮，每个按钮上的文本为“button1”、“button2”…“button5”。单击每个按钮时，分别弹出数字 1、2…5。代码如下：
+        // for (var i = 1; i < 6; i++) {
+        // var input = document.createElement('input');
+        // （空白处）
+        // document.body.appendChild(input);
+        // }
+        // 为空白处填上代码，实现所需功能
+        for (let i = 1; i < 6; i++) {
+            var input = document.createElement('input');
+            input.setAttribute("type", "button");
+            input.setAttribute("value", i);
+            input.onclick = function () {
+                alert(i);
+            };
+            document.body.appendChild(input);
+        }
+    </script>
+</body>
+
+</html>
