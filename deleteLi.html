@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- name content content里用逗号隔开 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .head,
+        li div {
+            display: inline-block;
+            width: 70px;
+            text-align: center;
+        }
+
+        li .id,
+        li .sex,
+        .id,
+        .sex {
+            width: 15px;
+        }
+
+        li .name,
+        .name {
+            width: 40px;
+        }
+
+        li .tel,
+        .tel {
+            width: 90px;
+        }
+
+        li .del,
+        .del {
+            width: 15px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .user-delete {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="J_container">
+        <div class="record-head">
+            <div class="head id">序号</div>
+            <div class="head name">姓名</div>
+            <div class="head sex">性别</div>
+            <div class="head tel">电话号码</div>
+            <div class="head province">省份</div>
+            <div class="head">操作</div>
+        </div>
+        <ul id="J_List">
+            <li>
+                <div class="id">1</div>
+                <div class="name">张三</div>
+                <div class="sex">男</div>
+                <div class="tel">13788888888</div>
+                <div class="province">浙江</div>
+                <div class="user-delete">删除</div>
+            </li>
+            <li>
+                <div class="id">2</div>
+                <div class="name">李四</div>
+                <div class="sex">女</div>
+                <div class="tel">13788887777</div>
+                <div class="province">四川</div>
+                <div class="user-delete">删除</div>
+            </li>
+            <li>
+                <div class="id">3</div>
+                <div class="name">王二</div>
+                <div class="sex">男</div>
+                <div class="tel">13788889999</div>
+                <div class="province">广东</div>
+                <div class="user-delete">删除</div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        // 此处也可换成ES6的写法
+        function Contact() {
+            this.init();
+        }
+        
+        // 思路：先看是点了哪个li标签，点击后进行remove操作
+        // 基本代码中有Contact函数，需要在函数中添加init方法
+        Contact.prototype.init = function () {
+            var oDiv = document.getElementsByClassName("user-delete");
+            var oUl = document.getElementById("J_List");
+            var oList = oUl.querySelectorAll("li");
+            // 遍历所有的 “删除” Node
+            for (let i = 0; i < oDiv.length; i++) {
+                // 给每个Node添加点击事件
+                oDiv[i].onclick = function() {
+                    // 删整个li
+                    oList[i].remove();
+                };
+            }
+        }
+
+        new Contact();
+    </script>
+
+</body>
+
+</html>
