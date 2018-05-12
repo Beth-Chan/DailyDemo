@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			font-size: 20px;
+		}
+		.container {
+			margin: 30px auto;
+			width: 920px;
+		}
+		nav {
+			color: blue;
+		}
+		ul {
+			margin-left: 20px;
+			clear: both;
+		}
+		li {
+			display: inline-block;
+			float: left;
+			margin-left: 20px;
+			margin-right: 20px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+		li:hover {
+			font-weight: bold;
+			color: orange;
+			font-size: 21px;
+		}
+		span {
+			display: block;
+			color: gray;
+		}
+		#leftbar {
+			width: 220px;
+			height: 300px;
+			overflow: auto;
+			clear: left;
+			float: left;
+			background-color: rgb(1, 255, 2);
+		}
+		#mainContent {
+			display: inline;
+			float: left;
+			width: 480px;
+			background-color: orange;
+		}
+		#rightbar {
+			float: left;
+			width: 218px;
+			height: 250px;
+			background-color: rgb(1, 255, 2);
+			overflow: hidden;
+		}
+		p {
+			text-indent: 2em;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+		.clearfix {*zoom:1;}
+		.clearfix:after { 
+	        visibility: hidden; 
+	        display: block; 
+	        content: " "; 
+	        clear: both; 
+	        height: 0; 
+		}
+		.pagebody {
+			border: 1px solid blue;
+		}
+		footer {
+			padding: 20px;
+			clear: both;
+			background-color: rgb(102, 204, 253);
+			font-size: 14px;
+			text-align: center;
+		}
+	
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<img src="../attachment/header.jpg" alt="仲恺农业工程学院">
+		</header>
+		<nav class="clearfix">
+			<ul>
+				<li>学校概况<span>Survey</span></li>
+				<li>仲园新闻<span>News</span></li>
+				<li>招生信息<span>Recruit</span></li>
+				<li>最新公告<span>Bulletin</span></li>
+				<li>院系结构<span>Hiberarchy</span></li>
+				<li>网络服务<span>Service</span></li>
+				<li>联系我们<span>Contact</span></li>
+			</ul>
+		</nav>
+		<div class="pagebody clearfix">
+			<div id="leftbar">
+				<p>这是左侧栏</p>
+				<p>为争取社会各界支持办学，促进学校发展，1987年4月，根据国家副主席王震提议，经中共广东省委同意，成立了学校董事会，王震任名誉董事长，广东省省长叶选平任第一届董事会董事长。1997年，广东省省长卢瑞华任第二届董事会董事长。2008年，广东省省长黄华华任第三届董事会董事长。2015年，广东省省长朱小丹任第四届董事会董事长。董事会成员由国家领导人、省部级领导以及港澳知名人士担任。</p>
+			</div>
+			<div id="mainContent">
+				<p>这是正文</p>
+				<p>
+					仲恺农业工程学院是一所以农、工学科为优势，农、工、理、经、管、文协调发展的多科性省属本科大学。学校坐落在历史文化名城――广州，校园集云山之神秀，汇珠水之灵气，是读书治学的理想园地。
+				</p>
+				<p>
+					学校前身为仲恺农工学校，是第一次国共合作时期，近代民主革命著名的政治活动家何香凝先生等提议、国民党中央为纪念廖仲恺先生爱护农工的意愿而决定创办的。学校于1927年招生，何香凝先生首任校长15年。1984年，经教育部、农牧渔业部批准，学校升格为本科院校，定名“仲恺农业技术学院”，国家副主席王震同志题写校名。2008年3月，经教育部批准，更名“仲恺农业工程学院”。
+				</p>
+
+			</div>
+			<div id="rightbar">
+				<p>右侧栏</p>
+				<p>近年来，学校先后被评为全国暑期“三下乡”社会实践先进单位、广东省回乡大学生开展农业科技下乡活动先进单位、广东省青年志愿服务优秀集体、广东省教育系统纪检监察先进集体、广州市助残志愿者先进集体、广州市“雷锋号”志愿服务先进集体、广州市文明单位，在管理和社会服务方面得到了社会广泛认可。</p>
+			</div>
+		</div>
+		<footer>粤ICP备05008893号 Copyright &copy;2008 中国・广东・仲恺农业工程学院 邮编:510225 Tel:+8620-89003114</footer>
+	</div>
+</body>
+</html>
