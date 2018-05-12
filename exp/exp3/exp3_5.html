@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		table, th, tr, td {
+			border-collapse: collapse;
+			border: 1px solid black;
+		}
+		th, tr, td {
+			padding: 10px;
+			width: 50px;
+		}
+		th {
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<table>
+		<caption>乘法口诀表</caption>
+		<tr>
+			<th>X</th>
+			<?php 
+				for ($num=1; $num <= 9; $num++) { 
+					echo "<th>$num</th>";
+				}
+			?>
+		</tr>
+		<?php 
+		for ($i = 1; $i <= 9; $i++) { // 行的切换
+			echo '<tr>';		
+			echo '<th align="center">'.$i.'</td>';
+			for($j = 1;$j <= 9;$j++) { // 列的切换
+				if ($i >= $j) {
+					echo '<td align="center">'.$j.'X'.$i.'='.($i*$j).'</td>';
+				} else {
+					echo '<td>&nbsp;</td>';
+				}
+			}
+				
+			echo '</tr>';
+		}
+		 ?>
+	</table>
+</body>
+</html>
