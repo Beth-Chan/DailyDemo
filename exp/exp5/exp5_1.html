@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            width: 600px;
+            margin: 30px auto;
+            padding: 25px;
+            border: 2px solid black;
+        }
+
+        .left {
+            width: 250px;
+            float: left;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            /* float: right; */
+            margin-left: 270px;
+            margin-bottom: 20px;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+            height: 0;
+            visibility: hidden;
+        }
+        .row, .button {
+            margin: 20px 0 20px 0;
+        }
+        .title {
+            margin: 20px 0 20px 0;   
+        }
+        input[type="submit"], input[type="reset"] {
+            padding: 0 10px 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="exp5_1.php" method="POST">
+        <div class="row">
+            <label for="username">输入用户名：</label>
+            <input type="text" name="username" id="username">
+        </div>
+        <hr>
+        <div class="main">
+            <div class="title clearfix">请选择灯泡：</div>
+            <div class="left">
+                <!-- 复选框和文字的距离用空格隔开即可 -->
+                <input type="checkbox" value="0" name="product[]"> 4个100瓦灯泡
+            </div>
+            <div class="price">￥2.00</div>
+            <div class="left">
+                <input type="checkbox" value="1" name="product[]"> 8个100瓦灯泡
+            </div>
+            <div class="price">￥4.00</div>
+            <div class="left">
+                <input type="checkbox" value="2" name="product[]"> 4个100瓦节能灯泡
+            </div>
+            <div class="price">￥3.00</div>
+            <div class="left">
+                <input type="checkbox" value="3" name="product[]"> 8个100瓦节能灯泡
+            </div>
+            <div class="price">￥6.00</div>
+        </div>
+        <hr>
+        <div class="title">请选择付款方式：</div>
+        <div class="pay">
+            <input type="radio" name="pay" value="0"> Visa
+            <input type="radio" name="pay" value="1"> MasterCard
+            <input type="radio" name="pay" value="2"> 银联
+        </div>
+        <div class="button">
+            <input type="submit" value="提交订单">
+            <input type="reset" value="重置">
+        </div>
+
+
+    </form>
+</body>
+
+</html>
