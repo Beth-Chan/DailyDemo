@@ -52,15 +52,15 @@
         $result = $db -> execSQL($selectSQL);
 
         $i = 0;
-        while ($obj = $result -> fetch_assoc()) {
+        while ($line = $result -> fetch_assoc()) {
             ++$i;
             echo "<tr><td>{$i}</td>";
-            echo "<td>{$obj['sno']}</td>";
-            echo "<td>{$obj['name']}</td>";
-            echo "<td>{$obj['title']}</td>";
-            echo "<td>{$obj['state']}</td>";
-            echo "<td>{$obj['last_time']}</td>";
-            echo "<td>{$obj['partner']}</td>";
+            echo "<td>{$line['sno']}</td>";
+            echo "<td>{$line['name']}</td>";
+            echo "<td>{$line['title']}</td>";
+            echo "<td>{$line['state']}</td>";
+            echo "<td>{$line['last_time']}</td>";
+            echo "<td>{$line['partner']}</td>";
             echo '</tr>';
         }
         ?>
