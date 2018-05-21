@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #box {
+            position: relative;
+            margin: 30px auto;
+            width: 525px;
+            height: 300px;
+            border: 40px solid black;
+            font-size: 30px;
+        }
+
+        /* 移动文本就能以 div 的左上角为原点 */
+
+        #text {
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="box" onmousedown="MovePos(event);" onmouseup="BeginMove();">
+        <span id="text">移动文本</span>
+    </div>
+    <script>
+        var finalx = 525-30*4; 
+        var finaly = 300-30-10;
+        var text = document.getElementById("text");
+        var box = document.getElementById("box");
+        var tID;
+        var count = 0; 
+        var flag = true; 
+        var speedX = 1;
+        var speedY = 1;
+
+        function MovePos(e) {
+            // 停止之前的定时器
+            clearTimeout(tID);
+
+            // 得到鼠标点击的当前位置，鼠标点的位置是文字的左上角
+            // 此时文本坐标要以 div 的左上角为参考原点，而不是浏览器的左上角
+            // event 的 clientX 与 clientY 获得鼠标在浏览器位置坐标
+            // 通过div的 offsetLeft 与 offsetTop 得到父级容器左上角在浏览器中的坐标
+            // 得到文本要移动到相对父级容器 div 的坐标
+            // offsetLeft 和 offsetTop 无单位
+            // 还要减去border的宽度
+            text.style.left = e.clientX - box.offsetLeft - 40 + "px"; // 405
+            text.style.top = e.clientY - box.offsetTop - 40  + "px"; //  262
+            // console.log(e.clientX);
+            // console.log(box.offsetLeft);
+            // console.log(text.style.left);
+            
+        }
+
+        function BeginMove() {
+            var x = text.style.left.match(/\d+/); // 也可以用substring(0, x.length-2)的形式
+            var y = text.style.top.match(/\d+/);
+            
+            MoveText(x, y);
+        }
+
+
+        function MoveText(x, y) {
+            
+             // 怎么限制区域
+
+
+            // 实现文本的碰撞周期移动，即当文本碰到 div 的边缘就反弹移动。
+            x = speedX + parseInt(x);
+            y = speedY + parseInt(y);
+            if (x <= 0 || x >= finalx) {
+                speedX *= -1;
+            }
+            if (y <= 0 || y >= finaly) {
+                speedY *= -1;
+            }
+
+
+            // 文本每移动 10 步后(每次移动步长为 1 像素)，文本颜色就变为红色，再移动 10步后，文本颜色又变成蓝色，并持续这种切换方式
+            count++;
+            if (count == 10) {
+                count = 0;
+                flag = !flag;
+            }
+            if (flag) {
+                text.style.color = "red";
+            } else {
+                text.style.color = "blue";
+            }
+
+            // if (x != finalx) { 
+            //     x++;
+            // }
+            // if (y != finaly) {
+            //     y++;
+            // }
+
+            text.style.left = x + "px";
+            text.style.top = y + "px";
+            tID = setTimeout(function(){MoveText(x, y);}, 10);  
+
+
+
+           
+        }
+    </script>
+</body>
+
+</html>
