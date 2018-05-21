@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        table {
+            width: 300px;
+            text-align: center;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        .evenStyle {
+            background: yellow;
+        }
+        .titleStyle {
+            background: green;
+        }
+    </style>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <table>
+        <caption>汽车销售</caption>
+        <tr>
+            <th>商品名称</th>
+            <th>单位</th>
+            <th>零售价格</th>
+        </tr>
+        <tr>
+            <td>奥迪A6</td>
+            <td>万元/辆</td>
+            <td>30.8</td>
+        </tr>
+        <tr>
+            <td>别克君威</td>
+            <td>万元/辆</td>
+            <td>17.8</td>
+        </tr>
+        <tr>
+            <td>尼桑天籁</td>
+            <td>万元/辆</td>
+            <td>18.8</td>
+        </tr>
+        <tr>
+            <td>马自达6</td>
+            <td>万元/辆</td>
+            <td>16.8</td>
+        </tr>
+        <tr>
+            <td>马自达3</td>
+            <td>万元/辆</td>
+            <td>14.8</td>
+        </tr>
+    </table>
+    <div class="setStyle">
+        <input type="button" value="使用CSS属性设置" id="cssProp">
+        <input type="button" value="使用CSS类样式设置" id="classStyle">
+        <input type="button" value="使用CSS属性设置(jQuery方式)" id="cssPropJQ">
+        <input type="button" value="使用CSS类样式设置(jQuery方式)" id="classStyleJQ">
+    </div>
+
+    <script>
+        var cssProp = document.getElementById("cssProp");
+        var classStyle = document.getElementById("classStyle");
+        var cssPropJQ = document.getElementById("cssPropJQ");
+        var classStyleJQ = document.getElementById("classStyleJQ");
+        var oTr = document.getElementsByTagName("tr");
+        cssProp.onclick = function() {
+            // JavaScript方法实现条纹表格
+            for(var i = 0; i < oTr.length; i++) {
+                if (i % 2 == 0) {
+                    // 1. 通过修改tr对象的style属性
+                    oTr[i].style.background = "yellow";
+                }
+                if (i == 0) {
+                    oTr[i].style.background = "green";
+                }
+            }
+        };
+        classStyle.onclick = function() {
+              // JavaScript方法实现条纹表格
+              for(var i = 0; i < oTr.length; i++) {
+                if (i % 2 == 0) {
+                    // 2. 通过CSS类样式
+                    oTr[i].className = "evenStyle";
+                }
+                if (i == 0) {
+                    oTr[i].className = "titleStyle";
+                }
+            }
+        };
+
+        cssPropJQ.onclick = function() {
+            // jQuery方式
+            $('tr:first-child').css('background', 'green');
+            $('tr:even').css('background', 'yellow');
+        };
+
+        classStyleJQ.onclick = function() {
+            $('tr:first-child').addClass('titleStyle');
+            $('tr:even').addClass('evenStyle');
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #input1,
+        #input2,
+        #input3 {
+            width: 200px;
+        }
+    </style>
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <div>
+        <input type="text" value="" id="input1">
+    </div>
+    <div>
+        <input type="text" value="" id="input2">
+    </div>
+    <div>
+        <input type="checkbox" id="checkbox1">
+        <span id="hidden">隐藏第三个文本框</span>
+    </div>
+    <div>
+        <input type="checkbox" id="checkbox2">
+        <span id="long">变长第一个文本框</span>
+    </div>
+    <div>
+        <input type="text" id="input3">
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var input1 = $("#input1");
+            var input2 = $("#input2");
+            input2.focus(function () {
+                input2.val(input1.val());
+            });
+
+            var checkbox1 = $("#checkbox1");
+            var input3 = $("#input3");
+            var hidden = $("#hidden");
+            checkbox1.click(function () {
+                if ($(this).prop("checked")) { // 或者$("#checkbox1")也可以，checkbox1不行，因为函数执行后checkbox1被销毁
+                    input3.css("display", "none");
+                    hidden.html("显示第三个文本框");
+                } else {
+                    input3.css("display", "block");
+                    hidden.html("隐藏第三个文本框");
+                }
+            });
+
+            var checkbox2 = $("#checkbox2");
+            var long = $("#long");
+            checkbox2.click(function () {
+                if ($(this).prop("checked")) {
+                    input1.css("width", "300px");
+                    long.html("变短第一个文本框");
+                } else {
+                    input1.css("width", "200px");
+                    long.html("变长第一个文本框");
+                }
+            });
+        });
+
+    </script>
+</body>
+
+</html>
