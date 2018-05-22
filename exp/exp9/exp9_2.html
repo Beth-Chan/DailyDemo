@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #area {
+            width: 900px;
+            height: 600px;
+            position: relative;
+            margin: 30px auto;
+            padding: 30px;
+            border: 2px solid black;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        #contextmenu {
+            display: none;
+            position: absolute;
+            left: 100px;
+            top: 150px;
+            width: 100px;
+            height: 160px;
+            border: 3px double red;
+        }
+
+        #contextmenu li {
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-bottom: 1px dashed gray;
+        }
+
+        #contextmenu li:last-child {
+            border-bottom: none;
+        }
+
+        #contextmenu li:hover {
+            background: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="area">
+        <ul id="city">
+            <h3>城市列表</h3>
+            <li>广州</li>
+            <li>深圳</li>
+            <li>珠海</li>
+        </ul>
+         <div id="contextmenu">
+            <ul>
+                <li onclick="addItem()" class="add">添加</li>
+                <li onclick="" class="remove">删除</li>
+                <li onclick="" class="modify">修改</li>
+                <li onclick="" class="retrieve">查询</li>
+            </ul>
+        </div> 
+    </div>
+
+    <script>
+        var area = document.getElementById("area");
+        var contextmenu = document.getElementById('contextmenu');
+        area.oncontextmenu = function (e) {
+            if (e.which == 3) {
+                contextmenu.style.display = "block";
+                // contextmenu.className = "contextmenu";
+                // console.log(e.clientX);
+                // console.log(area.offsetLeft);
+
+                contextmenu.style.left = e.clientX - area.offsetLeft + "px";
+                contextmenu.style.top = e.clientY - area.offsetTop + "px";
+            }
+        };
+
+        function addItem() {
+            var city = prompt("请输入城市", "");
+            // console.log(city);
+            var oUl = document.getElementById('city');
+            var oLi = document.createElement('li');
+            var oText = document.createTextNode(city);
+            oLi.appendChild(oText);
+            oUl.appendChild(oLi);
+        }
+
+        // 屏蔽右键菜单
+        document.oncontextmenu = function (ev) {
+            return false;
+        }
+
+        $(document).click(function (e) {
+            var divTop = $('#contextmenu');   // 设置目标区域
+            var area = $('#area');
+            // 实现弹出菜单的隐藏，即鼠标离开菜单范围时，菜单会隐藏
+            // jQuery 遍历 - has() 方法：检测某个元素是否在另一个元素中
+            // .has(selector) 用匹配元素的子集来构造一个新的 jQuery 对象。
+            // has() 将匹配元素集合缩减为拥有匹配指定选择器或 DOM 元素的后代的子集。
+            // jQuery 遍历 - is() 方法 返回true或false
+            // .is(selector) 根据选择器、元素或 jQuery 对象来检测匹配元素集合，如果这些元素中至少有一个元素匹配给定的参数，则返回 true。
+            if (!area.is(e.target) && area.has(e.target).length === 0) {
+                // alert("点击空白处成功！");
+                divTop.hide()
+            }
+        })
+    </script>
+</body>
+
+</html>
