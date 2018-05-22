@@ -1,46 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>表单验证</title>
     <style>
-    .container {
-        width: 500px;
-        margin: 30px auto;
-        border: 1px solid black;
-    }
-    .star {
-        color: red;
-    }
-    .tips {
-        height: 27px;
-        line-height: 27px;
-        color: red;
-        border: 1px solid gray;
+        form {
+            width: 600px;
+            margin: 30px auto;
+            padding: 40px;
+        }
+        
+        .row {
+            height: 50px;
+            line-height: 50px;
+        }
 
-    }
+        .star {
+            color: red;
+        }
+
+        .tips {
+            height: 27px;
+            line-height: 27px;
+            color: red;
+            border: 1px solid gray;
+        }
+
+        #submit {
+            width: 150px;
+            height: 50px;
+            background: url("new_btn.png") -412px -1px;
+        }
+
+        #submit:hover {
+            width: 150px;
+            height: 50px;
+            background: url("new_btn.png") -567px -1px;
+        }
+
+        label {
+            display: inline-block;
+            width: 90px; 
+            margin-right: 15px;
+            text-align: right; 
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 250px;
+            height: 30px;
+        }
+
+        .submit {
+            text-align: center;
+        }
+
+        #submit {
+            margin-left: -150px;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <form>
             <div class="row">
-                <span class="star">*</span><label for="phone">我的手机号</label><input type="text" id="phone" onblur="validatePhone(this)"><span id="phoneSpan"></span>
+                <label for="phone" class="phone"><span class="star">*</span>我的手机号</label><input type="text" id="phone" onblur="validatePhone(this)">
+                <span
+                    id="phoneSpan"></span>
             </div>
-            <span>完成注册后，手机号码为你的微博登录名</span>
-            <div class="row">
-                <span class="star">*</span><label for="psw">创建密码</label><input type="password" id="psw" onblur="validatePsw(this)"><span id="pswSpan"></span>
-            </div>
-            <div class="row">
-                <span class="star">*</span><label for="nickname">昵称</label><input type="text" id="nickname" onblur="validateNickname(this)"><span id="nicknameSpan"></span>
-            </div>
-            <div class="row">
-                <span class="star">*</span><label for="gender">性别</label><input type="radio" name="gender" value="男" id="area" checked><input type="radio" name="gender" value="女" id="area">
+            <div class="row finishtip">
+                <label><span></span></label>
+                <span id="">完成注册后，手机号码为你的微博登录名</span>
             </div>
             <div class="row">
-                <span class="star">*</span><label for="province">所在地</label>
+                <label for="psw"><span class="star">*</span>创建密码</label><input type="password" id="psw" onblur="validatePsw(this)">
+                <span
+                    id="pswSpan"></span>
+            </div>
+            <div class="row">
+                <label for="nickname"><span class="star">*</span>昵称</label><input type="text" id="nickname" onblur="validateNickname(this)">
+                <span
+                    id="nicknameSpan"></span>
+            </div>
+            <div class="row">
+                <label for="gender"><span class="star">*</span>性别</label><input type="radio" name="gender" value="男" id="gender"
+                    checked> 男 <input type="radio" name="gender" value="女"> 女
+            </div>
+            <div class="row">
+                <label for="province"><span class="star">*</span>所在地</label>
                 <select name="province" id="province" onchange="changeCity()">
                     <option value="0">-请选择-</option>
                     <option>广东省</option>
@@ -52,16 +102,18 @@
                 </select>
             </div>
             <div class="row">
-                <span class="star">*</span>手机验证码<input type="text" onblur="validateNum(this)"><span id="numSpan"></span>
+                <label for="num"><span class="star">*</span>手机验证码</label><input type="text" onblur="validateNum(this)" id="num"><span id="numSpan"></span>
             </div>
-            <input type="submit" value="">
+            <div class="submit">
+                <input type="submit" value="" id="submit">
+            </div>
         </form>
     </div>
 
     <script>
         // 多个验证，所以写了个通用的验证
         function legal(spanObj) {
-            spanObj.innerHTML = "<img src=\"true.png\" />";
+            spanObj.innerHTML = "<img src=\"true.png\" width=\"15px\" height=\"15px\"/>";
         }
         function illegal(spanObj, str) {
             spanObj.className = "tips";
@@ -116,22 +168,23 @@
                 legal(numSpan);
             }
         }
-        
+
         var data = [["广州", "深圳", "揭阳", "珠海"], ["杭州", "余姚", "温州", "宁波"], ["长沙", "湘潭", "龙岩", "南平"]];
         function changeCity() {
             var province = document.getElementById("province");
             var city = document.getElementById("city");
             // 实现联动
-            var cities = data[province.selectedIndex-1];
-            for (var i = 0; i  < cities.length; i++) {
+            var cities = data[province.selectedIndex - 1];
+            for (var i = 0; i < cities.length; i++) {
                 // new option(str1, str2); 一般用在动态生成选择项目
                 // str1 是页面中看到的描述,而str2是这一项的值,比如
                 // <option  value="这里是str2">这里是str1</option>
-                city[i+1] = new Option(cities[i], cities[i]);
+                city[i + 1] = new Option(cities[i], cities[i]);
             }
 
 
         }
     </script>
 </body>
+
 </html>
