@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单验证</title>
+    <style>
+    .container {
+        width: 500px;
+        margin: 30px auto;
+        border: 1px solid black;
+    }
+    .star {
+        color: red;
+    }
+    .tips {
+        height: 27px;
+        line-height: 27px;
+        color: red;
+        border: 1px solid gray;
+
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div class="row">
+                <span class="star">*</span><label for="phone">我的手机号</label><input type="text" id="phone" onblur="validatePhone(this)"><span id="phoneSpan"></span>
+            </div>
+            <span>完成注册后，手机号码为你的微博登录名</span>
+            <div class="row">
+                <span class="star">*</span><label for="psw">创建密码</label><input type="password" id="psw" onblur="validatePsw(this)"><span id="pswSpan"></span>
+            </div>
+            <div class="row">
+                <span class="star">*</span><label for="nickname">昵称</label><input type="text" id="nickname" onblur="validateNickname(this)"><span id="nicknameSpan"></span>
+            </div>
+            <div class="row">
+                <span class="star">*</span><label for="gender">性别</label><input type="radio" name="gender" value="男" id="area" checked><input type="radio" name="gender" value="女" id="area">
+            </div>
+            <div class="row">
+                <span class="star">*</span><label for="province">所在地</label>
+                <select name="province" id="province" onchange="changeCity()">
+                    <option value="0">-请选择-</option>
+                    <option>广东省</option>
+                    <option>浙江省</option>
+                    <option>湖南省</option>
+                </select>
+                <select name="city" id="city">
+                    <option value="">-请选择-</option>
+                </select>
+            </div>
+            <div class="row">
+                <span class="star">*</span>手机验证码<input type="text" onblur="validateNum(this)"><span id="numSpan"></span>
+            </div>
+            <input type="submit" value="">
+        </form>
+    </div>
+
+    <script>
+        // 多个验证，所以写了个通用的验证
+        function legal(spanObj) {
+            spanObj.innerHTML = "<img src=\"true.png\" />";
+        }
+        function illegal(spanObj, str) {
+            spanObj.className = "tips";
+            spanObj.style.display = "inline-block";
+            spanObj.innerHTML = "<img src=\"false.png\"/>" + str;
+        }
+
+        // 手机号码的验证
+        var phoneSpan = document.getElementById("phoneSpan");
+        function validatePhone(obj) {
+            if (obj.value == "" || obj.value.length != 11) {
+                illegal(phoneSpan, "手机号码格式不正确");
+            } else {
+                var reg = /^1[3|4|5|8][0-9]\d{8}$/;
+                if (reg.test(obj.value)) {
+                    legal(phoneSpan);
+                } else {
+                    illegal(phoneSpan, "手机号码格式不正确");
+                }
+            }
+        }
+
+        // 密码的验证
+        var pswSpan = document.getElementById("pswSpan");
+        function validatePsw(obj) {
+            if (obj.value.length < 6) {
+                illegal(pswSpan, "密码太短了，最少6位");
+            } else {
+                legal(pswSpan);
+            }
+        }
+
+        // 昵称的验证
+        var nicknameSpan = document.getElementById("nicknameSpan");
+        // 数组模拟数据库取出来的昵称
+        var names = ["Tom", "Jack", "Carson", "Nadal", "Federer", "Djokovic", "Murray",];
+        function validateNickname(obj) {
+            if (obj.value == "" || names.indexOf(obj.value) != -1) {
+                illegal(nicknameSpan, "此呢称太受欢迎，已有人抢了");
+            } else {
+                legal(nicknameSpan);
+            }
+        }
+
+        // 手机验证码的验证
+        var numSpan = document.getElementById("numSpan");
+        function validateNum(obj) {
+            if (obj.value == "") {
+                illegal(numSpan, "请输入验证码");
+            }
+            else {
+                legal(numSpan);
+            }
+        }
+        
+        var data = [["广州", "深圳", "揭阳", "珠海"], ["杭州", "余姚", "温州", "宁波"], ["长沙", "湘潭", "龙岩", "南平"]];
+        function changeCity() {
+            var province = document.getElementById("province");
+            var city = document.getElementById("city");
+            // 实现联动
+            var cities = data[province.selectedIndex-1];
+            for (var i = 0; i  < cities.length; i++) {
+                // new option(str1, str2); 一般用在动态生成选择项目
+                // str1 是页面中看到的描述,而str2是这一项的值,比如
+                // <option  value="这里是str2">这里是str1</option>
+                city[i+1] = new Option(cities[i], cities[i]);
+            }
+
+
+        }
+    </script>
+</body>
+</html>
