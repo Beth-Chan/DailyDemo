@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户名验证</title>
+</head>
+
+<body>
+    <form action="" id="register-form">
+        <div class="row">
+            <label for="username">姓名：</label>
+            <input type="text" name="username" id="username">
+            <span id="tips"></span>
+        </div>
+        <div class="row">
+            <label for="gender">性别：</label>
+            <select name="gender" id="gender">
+                <option value="male">男</option>
+                <option value="female">女</option>
+            </select>
+        </div>
+        <div class="row">
+            <label for="psw">密码：</label>
+            <input type="text" name="psw" id="psw">
+        </div>
+        <div class="row">
+            <input type="button" value="注册" id="register">
+        </div>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        // 用户名用AJAX验证是否已存在
+        var username = document.getElementById("username");
+        username.onblur = function() {
+            var xhr = null;
+            if (typeof XMLHttpRequest != "undefined") {
+                xhr = new XMLHttpRequest();
+            } else {
+                xhr = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4) {
+                    if ((xhr.status >= 200 && xhr.status < 300 )|| xhr.status == 304) {
+                        var result = xhr.responseText;
+                        var tips = document.getElementById("tips");
+                        if (result == 1) {
+                            tips.innerHTML = "<span style=\"color:red;\">用户名已被注册！</span>";
+                        }
+                        if (result == 0) {
+                            tips.innerHTML = "<span style=\"color:green;\">用户名可以使用！</span>";
+                        }
+                    } else {
+                        console.log("Request was unsuccessful: " + xhr.status + "-" + xhr.statusText);
+                    }
+                }
+            };
+            xhr.open("GET", "exp9_1_1.php?username=" + username, true);
+            xhr.send(null);
+        };
+
+        // 整个表单用FormData的形式处理
+        var register = document.getElementById("register");
+        register.onclick = function() {
+            var form = document.getElementById("register-form");
+            // XMLHttpRequest Level 2 新特性
+            var formData = new FormData(form);
+            var xhr = new XMLHttpRequest();
+            xhr.onload = function() {
+                if ((xhr.status >= 200 && xhr.status < 300 )|| xhr.status == 304) {
+                    var result = document.getElementById("result");
+                    result.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open("POST", "exp9_1_2.php", true);
+            // 旧的方式
+            // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=UTF-8");
+            xhr.send(formData);
+        };
+    </script>
+</body>
+
+</html>
