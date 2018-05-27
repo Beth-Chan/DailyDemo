@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .shopcart {
+            width: 500px;
+            margin: 30px auto;
+            border: 1px solid gray;
+        }
+
+        h1 {
+            font-size: 20px;
+        }
+
+        .shopcart-header {
+            font-weight: bold;
+        }
+
+        .shopcart-row {
+            border-bottom: 1px dashed gray;
+        }
+
+        .shopcart-row:last-child {
+            border-bottom: 1px dashed transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shopcart">
+        <h1>请选择购物</h1>
+        <hr>
+        <div class="shopcart-row shopcart-header">
+            <span>产品名称</span>
+            <span>价格</span>
+            <span>数量</span>
+        </div>
+        <div class="shopcart-row">
+            <span>iPad</span>
+            <span>￥3000</span>
+            <span>
+                <a href="shopcart.php?product=ipad&status=add">购买</a>
+            </span>
+        </div>
+        <div class="shopcart-row">
+            <span>笔记本</span>
+            <span>￥4000</span>
+            <span>
+                <a href="shopcart.php?product=notebook&status=add">购买</a>
+            </span>
+        </div>
+        <div class="shopcart-row">
+            <span>数码相机</span>
+            <span>￥2000</span>
+            <span>
+                <a href="shopcart.php?product=camera&status=add">购买</a>
+            </span>
+        </div>
+        <div class="shopcart-row">
+            <span>iPhone</span>
+            <span>￥3500</span>
+            <span>
+                <a href="shopcart.php?product=iphone&status=add">购买</a>
+            </span>
+        </div>
+        <div class="review">
+            <a href="shopcart.php?status=show" target="_self">查看购物车</a>
+        </div>
+        <div class="logout">
+            <a href="psw_validator.php" target="_self">注销</a>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            width: 300px;
+            margin: 30px auto;
+            border: 1px solid gray;
+        }
+       label {
+           display: inline-block;
+           width: 80px;
+           text-align: right;
+       }
+       .login-row {
+           margin: 10px;
+       }
+       .submit {
+           text-align: center;
+       }
+       .login-container {
+           margin: 10px;
+       }
+    </style>
+</head>
+
+<body>
+   <form action="psw_validator.php" method="POST">
+       <div class="login-container">
+           <h4>请输入用户名</h4>
+           <div class="login-main">
+               <div class="login-row">
+                   <label for="username">用户名:</label>
+                   <input type="text" name="username" id="username">
+               </div>
+               <div class="login-row">
+                   <label for="psw">密码：</label>
+                   <input type="password" name="psw" id="psw">
+               </div>
+               <div class="login-row submit">
+                   <input type="submit" value="登录">
+               </div>
+           </div>
+       </div>
+   </form>
+    
+    
+</body>
+
+</html>
